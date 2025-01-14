@@ -15,3 +15,4 @@ reportlab
 cloudinary
 django-cloudinary-storage
 Faker
+whitenoise
