@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from .models import CustomUser, PasswordResetCode
-# from user_admin.models.account_models import UserInfo, PublicInfo
+from user_admin.models.account_models import UserInfo, PublicInfo
 
 class AccountLoginSerializer(serializers.Serializer):
     # Fields required for admin login
@@ -73,34 +73,34 @@ class OTPResendCodeSerializer(serializers.Serializer):
             raise  serializers.ValidationError({'serializer_email': 'User with this email does not exist.'})
         return data
 
-# class PublicSignUpSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = CustomUser
-#         fields = ['username', 'password', 'email', 'first_name', 'last_name']
-#         extra_kwargs = {
-#             'username': {"required": True},
-#             'password': {"required": True},
-#             'email': {"required": True},
-#             'first_name': {"required": True},
-#             'last_name': {"required": True}
-#         }
+class PublicSignUpSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CustomUser
+        fields = ['username', 'password', 'email', 'first_name', 'last_name']
+        extra_kwargs = {
+            'username': {"required": True},
+            'password': {"required": True},
+            'email': {"required": True},
+            'first_name': {"required": True},
+            'last_name': {"required": True}
+        }
 
-#     def create(self, validated_data):
-#         # Create CustomUser instance
-#         user = CustomUser(**validated_data)
-#         user.set_password(validated_data['password'])
-#         user.role = 'public'  # Set role as public
-#         user.save()
+    def create(self, validated_data):
+        # Create CustomUser instance
+        user = CustomUser(**validated_data)
+        user.set_password(validated_data['password'])
+        user.role = 'public'  # Set role as public
+        user.save()
         
-#         try:
-#             # Create UserInfo instance
-#             user_info = UserInfo.objects.create(user=user)
+        try:
+            # Create UserInfo instance
+            user_info = UserInfo.objects.create(user=user)
             
-#             # Create PublicInfo instance
-#             public_info = PublicInfo.objects.create(user_info=user_info)
+            # Create PublicInfo instance
+            public_info = PublicInfo.objects.create(user_info=user_info)
             
-#         except Exception as e:
-#             user.delete()
-#             raise serializers.ValidationError(f"Error creating user profile: {str(e)}")
+        except Exception as e:
+            user.delete()
+            raise serializers.ValidationError(f"Error creating user profile: {str(e)}")
             
-#         return user
+        return user
