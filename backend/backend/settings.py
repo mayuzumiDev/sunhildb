@@ -115,7 +115,7 @@ DATABASES = {
     
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'sunhill_db',
+        'NAME': 'sunhilldb',
         'USER': 'sunhill_user',
         'PASSWORD': 'password',
         'HOST': 'localhost',
