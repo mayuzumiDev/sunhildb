@@ -11,5 +11,5 @@ urlpatterns = [
     path('password-reset-confirm/', views.PasswordResetConfirm.as_view(), name='password_reset_confirm'),
     path('otp-resend/', views.OTPCodeResend.as_view(), name='otp_code_resend'),
 
-    path('public/sign-up/', views.PublicSignUpView.as_view(), name='public_sign_up')
+    # path('public/sign-up/', views.PublicSignUpView.as_view(), name='public_sign_up')
 ]
