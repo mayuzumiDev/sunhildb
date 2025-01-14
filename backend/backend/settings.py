@@ -115,11 +115,11 @@ DATABASES = {
     
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PWD"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT")
+        'NAME': 'sunhill_db',
+        'USER': 'sunhill_user',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': 5432
     } 
 }
 
